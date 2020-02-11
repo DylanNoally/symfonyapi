@@ -41,15 +41,9 @@ class Roles
      */
     private $statut;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Droits", inversedBy="roles")
-     */
-    private $droits;
-
     public function __construct()
     {
         $this->date_creation = new \Datetime();
-        $this->droits = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -89,32 +83,6 @@ class Roles
     public function setStatut(bool $statut): self
     {
         $this->statut = $statut;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Droits[]
-     */
-    public function getDroits(): Collection
-    {
-        return $this->droits;
-    }
-
-    public function addDroit(Droits $droit): self
-    {
-        if (!$this->droits->contains($droit)) {
-            $this->droits[] = $droit;
-        }
-
-        return $this;
-    }
-
-    public function removeDroit(Droits $droit): self
-    {
-        if ($this->droits->contains($droit)) {
-            $this->droits->removeElement($droit);
-        }
 
         return $this;
     }

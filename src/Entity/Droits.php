@@ -25,16 +25,6 @@ class Droits
      */
     private $libelle;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Roles", mappedBy="droits")
-     */
-    private $roles;
-
-    public function __construct()
-    {
-        $this->roles = new ArrayCollection();
-    }
-
     public function getId(): ?int
     {
         return $this->id;
@@ -48,34 +38,6 @@ class Droits
     public function setLibelle(string $libelle): self
     {
         $this->libelle = $libelle;
-
-        return $this;
-    }
-
-    /**
-     * @return Collection|Roles[]
-     */
-    public function getRoles(): Collection
-    {
-        return $this->roles;
-    }
-
-    public function addRole(Roles $role): self
-    {
-        if (!$this->roles->contains($role)) {
-            $this->roles[] = $role;
-            $role->addDroit($this);
-        }
-
-        return $this;
-    }
-
-    public function removeRole(Roles $role): self
-    {
-        if ($this->roles->contains($role)) {
-            $this->roles->removeElement($role);
-            $role->removeDroit($this);
-        }
 
         return $this;
     }
