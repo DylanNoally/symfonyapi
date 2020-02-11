@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition{% endblock %}
+
+{% block body %}
+<h5><b>Edition du rôle</b></h5>
+
+{{ form_start(form, {'method': 'POST'}, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_label(form.libelle, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.libelle, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+
+{#
+   {% if editRole.statut == "0" %}
+        <img src="{{ asset('build/rouge.png') }}" class="table-img-profile4 rounded-circle"
+             title="Rouge" alt="Statut rouge"><b>Obsolète&nbsp;</b>
+    {% elseif editRole.statut == "1" %}
+        <img src="{{ asset('build/vert.png') }}" class="table-img-profile4 rounded-circle" title="Vert"
+             alt="Statut vert"><b>à jour&nbsp;</b>
+    {% else %}
+        <img src="{{ asset('build/orange.png') }}" class="table-img-profile4 rounded-circle"
+             title="Orange" alt="Statut orange"><b>à vérifier&nbsp;</b>
+    {% endif %}    
+#}
+
+
+    {{ form_widget(form.save, { 'label': 'Valider', 'attr': {'class': 'btn btn-red submit-button'}}) }} 
+
+    <br><br>
+
+
+{{ form_end(form) }}
+
+    <br><br>
+    <a href="{{ path('listRoles') }}">Annuler</a>
+
+<h5><b>Suppression du rôle</b></h5>
+
+    <button class="btn btn-white-red return-button" type="button">
+        <a href="{{ path('deleteRole', {'id': editRole.id}) }}">SUPPRIMER</a>
+    </button>
+
+{% endblock %}

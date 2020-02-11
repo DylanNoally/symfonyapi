@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription{% endblock %}
+
+{% block body %}
+<h5><b>Saisie d'un nouvel utilisateur</b></h5>
+
+{{ form_start(form, {'method': 'POST'}, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_label(form.email, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.password, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.password, {'attr': {'class': 'form-control my-form-input-big input-password'}}) }}
+
+	<br><br>
+    <img src="{{asset('build/Photo.png')}}" class="rounded-circle avatar-pic" title="Photo" alt="Photo de profil">
+
+	<span><i class="fas fa-sync-alt"></i>PHOTO</span>
+	{{ form_widget(form.photo) }}  
+
+	<br><br>
+	{{ form_label(form.genre, 'Genre', {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.genre, {'attr': {'class': 'form-control my-form-input-little'}}) }}
+
+	<br><br>	  
+	{{ form_label(form.prenom, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.prenom, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+	<br><br>
+	{{ form_label(form.nom, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.nom, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+	<br><br>
+	{{ form_label(form.date_de_naissance, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.date_de_naissance, {'attr': {'class': 'my-form-input-tiny'}}) }}    
+
+	<br><br>
+	{{ form_label(form.poste, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.poste, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+	<br><br>
+	{{ form_label(form.tel_mobile, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.tel_mobile, {'attr': {'class': 'form-control my-form-input-big input-telmobile'}}) }}		
+
+	<br><br>
+	{{ form_label(form.tel_fixe, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.tel_fixe, {'attr': {'class': 'form-control my-form-input-big input-telmobile'}}) }}	
+
+	<br><br>
+    {{ form_widget(form.save, { 'label': 'Valider', 'attr': {'class': 'btn btn-red submit-button'}}) }}	
+
+    <br><br>
+    <a href="{{ path('listUsers') }}">Annuler</a>
+
+
+{{ form_end(form) }}
+
+{% endblock %}

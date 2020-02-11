@@ -1,6 +1,6 @@
-#index:
-#    path: /
-#    controller: App\Controller\DefaultController::index
+index:
+  path: /accueil
+  controller: App\Controller\AccueilController::accueil
 login_check:
   path: /login_check
   methods: POST
