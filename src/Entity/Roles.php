@@ -5,10 +5,13 @@ namespace App\Entity;
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource()
+ * @UniqueEntity(fields="libelle", message="Ce rôle existe déjà") 
  * @ORM\Entity(repositoryClass="App\Repository\RolesRepository")
  */
 class Roles
@@ -22,26 +25,30 @@ class Roles
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message = "Ce champ ne peut être vide.")
      */
     private $libelle;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Assert\NotBlank
+     * @Assert\Type("\Datetime")
      */
     private $date_creation;
 
     /**
-     * @ORM\Column(type="boolean")
+     * @ORM\Column(type="boolean", nullable=true)
      */
     private $statut;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Droits", mappedBy="roles")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Droits", inversedBy="roles")
      */
     private $droits;
 
     public function __construct()
     {
+        $this->date_creation = new \Datetime();
         $this->droits = new ArrayCollection();
     }
 
@@ -98,7 +105,6 @@ class Roles
     {
         if (!$this->droits->contains($droit)) {
             $this->droits[] = $droit;
-            $droit->addRole($this);
         }
 
         return $this;
@@ -108,7 +114,6 @@ class Roles
     {
         if ($this->droits->contains($droit)) {
             $this->droits->removeElement($droit);
-            $droit->removeRole($this);
         }
 
         return $this;

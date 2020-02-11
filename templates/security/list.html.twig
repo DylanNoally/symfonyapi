@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des utilisateurs{% endblock %}
+
+{% block body %}
+<h5><b>Liste des utilisateurs</b></h5>
+
+{% for user in lesUsers %}
+	{% if user.email is not null %}
+		<ul>
+			<li><a href="{{ path('editUsers', { 'id': user.id}) }}">{{user.nom}} {{user.prenom}}</a></li>
+		</ul>
+	{% else %}
+		<ul>
+			<li>Pas d'utilisateur</li>
+		</ul>
+    {% endif %}					
+{% endfor %}
+
+<h5><b>Créer un utilisateur</b></h5>
+
+	<button class="btn btn-white-red return-button" type="button">
+		<a href="{{ path('newUser') }}">Créer un utilisateur</a>
+	</button>
+	
+	<br><br>
+	<a href="{{ path('app_accueil') }}">Retour</a>		
+
+{% endblock %}

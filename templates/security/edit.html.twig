@@ -1,0 +1,88 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition{% endblock %}
+
+{% block body %}
+<h5><b>Edition de l'utilisateur</b></h5>
+
+{{ form_start(form, {'method': 'POST'}, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_label(form.email, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.email, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+
+    {{ form_label(form.password, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.password, {'attr': {'class': 'form-control my-form-input-big input-password'}}) }}
+
+    <br><br>
+    {% if editUser.photo is not null %}
+        <img src="{{ asset('build/images/' ~ editUser.photo) }}"
+             class="rounded-circle avatar-pic" title="Photo" alt="Photo de profil" style="width: 5%">
+    {% else %}
+        <img src="{{ asset('build/Photo.png') }}" class="rounded-circle avatar-pic" title="Photo"
+             alt="Photo de profil">
+    {% endif %}
+
+    {{ form_widget(form.photo) }} 
+
+    <br><br>
+    {{ form_label(form.genre, 'Genre', {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.genre, {'attr': {'class': 'form-control my-form-input-little'}}) }}
+
+    <br><br>      
+    {{ form_label(form.prenom, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.prenom, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.nom, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.nom, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.date_de_naissance, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.date_de_naissance, {'attr': {'class': 'my-form-input-tiny'}}) }}    
+
+    <br><br>
+    {{ form_label(form.poste, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.poste, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.tel_mobile, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.tel_mobile, {'attr': {'class': 'form-control my-form-input-big input-telmobile'}}) }}       
+
+    <br><br>
+    {{ form_label(form.tel_fixe, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.tel_fixe, {'attr': {'class': 'form-control my-form-input-big input-telmobile'}}) }} 
+
+    <br><br>
+
+{#
+   {% if editUser.statut == "0" %}
+        <img src="{{ asset('build/rouge.png') }}" class="table-img-profile4 rounded-circle"
+             title="Rouge" alt="Statut rouge"><b>Obsolète&nbsp;</b>
+    {% elseif editUser.statut == "1" %}
+        <img src="{{ asset('build/vert.png') }}" class="table-img-profile4 rounded-circle" title="Vert"
+             alt="Statut vert"><b>à jour&nbsp;</b>
+    {% else %}
+        <img src="{{ asset('build/orange.png') }}" class="table-img-profile4 rounded-circle"
+             title="Orange" alt="Statut orange"><b>à vérifier&nbsp;</b>
+    {% endif %}    
+#}
+
+
+    {{ form_widget(form.save, { 'label': 'Valider', 'attr': {'class': 'btn btn-red submit-button'}}) }} 
+
+    <br><br>
+
+
+{{ form_end(form) }}
+
+    <br><br>
+	<a href="{{ path('listUsers') }}">Annuler</a>
+
+<h5><b>Suppression de l'utilisateur</b></h5>
+
+	<button class="btn btn-white-red return-button" type="button">
+		<a href="{{ path('deleteUser', {'id': editUser.id}) }}">SUPPRIMER</a>
+	</button>
+
+{% endblock %}

@@ -26,7 +26,7 @@ class Droits
     private $libelle;
 
     /**
-     * @ORM\ManyToMany(targetEntity="App\Entity\Roles", inversedBy="droits")
+     * @ORM\ManyToMany(targetEntity="App\Entity\Roles", mappedBy="droits")
      */
     private $roles;
 
@@ -64,6 +64,7 @@ class Droits
     {
         if (!$this->roles->contains($role)) {
             $this->roles[] = $role;
+            $role->addDroit($this);
         }
 
         return $this;
@@ -73,6 +74,7 @@ class Droits
     {
         if ($this->roles->contains($role)) {
             $this->roles->removeElement($role);
+            $role->removeDroit($this);
         }
 
         return $this;
