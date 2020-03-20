@@ -9,10 +9,14 @@ use Symfony\Component\VarDumper\VarDumper;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 
+// Préfix url
+/**
+ * @Route("/roles")
+ */
 class RoleController extends AbstractController
 {
     /**
-     * @Route("roles/new", methods={"GET","POST"}, name="newRole")
+     * @Route("/new", methods={"GET","POST"}, name="newRole")
      */
     public function new(Request $request)
     {
@@ -43,7 +47,7 @@ class RoleController extends AbstractController
     }
 
     /**
-     * @Route("roles/list", name="listRoles", methods={"GET","POST"})
+     * @Route("/list", name="listRoles", methods={"GET","POST"})
      */
     public function list(Request $httpRequest)
     {
@@ -60,7 +64,7 @@ class RoleController extends AbstractController
     }    
 
     /**
-     * @Route("roles/edit/{id}", requirements={"id"="\d+"}, methods={"GET","POST"}, name="editRole")
+     * @Route("/edit/{id}", requirements={"id"="\d+"}, methods={"GET","POST"}, name="editRole")
      */
     public function edit($id, Request $request)
     {

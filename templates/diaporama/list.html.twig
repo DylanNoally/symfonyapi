@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des diaporamas{% endblock %}
+
+{% block body %}
+<h5><b>Liste des diaporamas</b></h5>
+
+{% for diapo in lesDiaporamas %}
+	{% if diapo.titre is not null %}
+		<ul>
+			<li><a href="{{ path('editDiaporama', { 'id': diapo.id}) }}">{{diapo.titre}}</a></li>
+		</ul>
+	{% else %}
+		<ul>
+			<li>Pas de diaporama</li>
+		</ul>
+    {% endif %}			
+{% endfor %}
+
+<h5><b>Créer un diaporama</b></h5>
+
+	<button class="btn btn-white-red return-button" type="button">
+		<a href="{{ path('newDiaporama') }}">Créer un diaporama</a>
+	</button>
+	
+	<br><br>
+	<a href="{{ path('app_accueil') }}">Retour</a>		
+
+{% endblock %}

@@ -1,0 +1,135 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition{% endblock %}
+
+{% block body %}
+<h5><b>Edition de l'utilisateur</b></h5>
+
+{{ form_start(form, {'method': 'POST'}, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_label(form.titre, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.titre, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.resume, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.resume, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.texte_long, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.texte_long, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.date_de_publication, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.date_de_publication, {'attr': {'class': 'form-control my-form-input-little'}}) }}
+
+    <br><br>
+    {% if editEntite.photo is not null %}
+        <img src="{{ asset('build/images/' ~ editEntite.photo) }}"
+             class="rounded-circle avatar-pic" title="Photo" alt="Photo de l'entité" style="width: 5%">
+    {% else %}
+        <img src="{{ asset('build/Photo.png') }}" class="rounded-circle avatar-pic" title="Photo"
+             alt="Photo de l'entité">
+    {% endif %}
+
+    {{ form_widget(form.photo) }} 
+
+
+    <br><br>
+    <img src="{{asset('build/Photo.png')}}" class="rounded-circle avatar-pic" title="Photo_add" alt="Photo additionnelle de l'entité">
+
+    <span><i class="fas fa-sync-alt"></i>PHOTO</span>
+    {{ form_widget(form.photo_additionnelle) }}  
+
+    <br><br>      
+    {{ form_label(form.etat, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.etat, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    <img src="{{asset('build/Photo.png')}}" class="rounded-circle avatar-pic" title="Ficher_pdf" alt="Fichier PDF de l'entité">
+
+    <span><i class="fas fa-sync-alt"></i>PHOTO</span>
+    {{ form_widget(form.fichier_pdf) }} 
+
+    <br><br>
+    {{ form_label(form.liens, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.liens, {'attr': {'class': 'my-form-input-tiny'}}) }}    
+
+    <br><br>
+    <img src="{{asset('build/Photo.png')}}" class="rounded-circle avatar-pic" title="Logo" alt="Logo de l'entité">
+
+    <span><i class="fas fa-sync-alt"></i>LOGO</span>
+    {{ form_widget(form.logo) }}  
+
+    <br><br>
+    {{ form_label(form.adresse, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.adresse, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.complement_adresse, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.complement_adresse, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.code_postal, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.code_postal, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.ville, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.ville, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.telephone, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.telephone, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.fax, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.fax, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.site_web, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.site_web, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.email_general, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.email_general, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.email_alertes, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.email_alertes, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.url_facebook, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.url_facebook, {'attr': {'class': 'form-control my-form-input-big'}}) }}         
+
+    <br><br>
+    {{ form_label(form.url_twitter, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.url_twitter, {'attr': {'class': 'form-control my-form-input-big'}}) }}  
+
+    <br><br>
+    {{ form_label(form.url_instagram, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.url_instagram, {'attr': {'class': 'form-control my-form-input-big'}}) }}    
+
+    <br><br>
+    {{ form_label(form.url_youtube, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.url_youtube, {'attr': {'class': 'form-control my-form-input-big'}}) }}  
+
+    <br><br>
+    {{ form_label(form.url_linkedin, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.url_linkedin, {'attr': {'class': 'form-control my-form-input-big'}}) }} 
+
+    <br><br>
+    {{ form_widget(form.save, { 'label': 'Valider', 'attr': {'class': 'btn btn-red submit-button'}}) }} 
+
+    <br><br>
+
+
+{{ form_end(form) }}
+
+    <br><br>
+	<a href="{{ path('listEntites') }}">Annuler</a>
+
+<h5><b>Suppression de l'entité</b></h5>
+
+	<button class="btn btn-white-red return-button" type="button">
+		<a href="{{ path('deleteEntite', {'id': editEntite.id}) }}">SUPPRIMER</a>
+	</button>
+
+{% endblock %}

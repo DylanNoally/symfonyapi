@@ -2,6 +2,7 @@
 namespace App\Form;
 
 use App\Entity\User;
+use App\Entity\Roles;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -17,6 +18,7 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class UserType extends AbstractType
 {
@@ -33,7 +35,8 @@ class UserType extends AbstractType
 				'data_class' => null])
     		->add('tel_mobile', TelType::class, array('label' => 'Tel. Mobile', 'required' => false))
     		->add('tel_fixe', TelType::class, array('label' => 'Tel. Fixe direct', 'required' => false))
-    		->add('poste', TextType::class,  array('label' => 'Poste', 'required' => false))     					
+    		->add('poste', TextType::class,  array('label' => 'Poste', 'required' => false))
+/*            ->add('id_role', EntityType::class, array('class' => Roles::class, 'choice_label' => 'libelle', 'label'=>'Rôle ', 'placeholder'=>'', 'required' => false))*/                 					
 
             // Bouton Submit //
             ->add('save', SubmitType::class, array('label' => 'ENREGISTRER'))->getForm();

@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edition d'un diaporama{% endblock %}
+
+{% block body %}
+<h5><b>modification d'un diaporama</b></h5>
+
+{{ form_start(form, {'method': 'POST'}, {'attr': {'novalidate': 'novalidate'}}) }}
+    {{ form_label(form.titre, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.titre, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+    <br><br>
+    {{ form_label(form.resume, null, {'label_attr': {'class': 'my-form-label'}}) }}
+    {{ form_widget(form.resume, {'attr': {'class': 'form-control my-form-input-big input-password'}}) }}
+
+	<br><br>
+	{{ form_label(form.id_categorie, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.id_categorie, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+	<br><br>
+	{{ form_label(form.date_debut_affichage, 'Genre', {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.date_debut_affichage, {'attr': {'class': 'form-control my-form-input-little'}}) }}
+
+	<br><br>	  
+	{{ form_label(form.date_fin_affichage, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.date_fin_affichage, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+	<br><br>
+	{{ form_label(form.libelle_bouton, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.libelle_bouton, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+	<br><br>
+	{{ form_label(form.url_bouton, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.url_bouton, {'attr': {'class': 'my-form-input-tiny'}}) }}    
+
+	<br><br>
+	{{ form_label(form.case_nouvel_onglet, null, {'label_attr': {'class': 'my-form-label'}}) }}
+	{{ form_widget(form.case_nouvel_onglet, {'attr': {'class': 'form-control my-form-input-big'}}) }}
+
+	<br><br>
+    <img src="{{asset('build/Photo.png')}}" class="rounded-circle avatar-pic" title="Image" alt="Image du diaporama">
+
+	<span><i class="fas fa-sync-alt"></i>IMAGE</span>
+	{{ form_widget(form.image) }}  
+
+	<br><br>
+    {{ form_widget(form.save, { 'label': 'Valider', 'attr': {'class': 'btn btn-red submit-button'}}) }}	
+
+{{ form_end(form) }}
+
+<br><br>
+<a href="{{ path('listDiaporamas') }}">Annuler</a>
+
+<h5><b>Suppression du diaporama</b></h5>
+
+	<button class="btn btn-white-red return-button" type="button">
+		<a href="{{ path('deleteDiaporama', {'id': editDiaporama.id}) }}">SUPPRIMER</a>
+	</button>
+
+{% endblock %}

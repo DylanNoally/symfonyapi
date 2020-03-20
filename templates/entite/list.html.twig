@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des entités{% endblock %}
+
+{% block body %}
+<h5><b>Liste des entités</b></h5>
+
+{% for ent in lesEntites %}
+	{% if ent.titre is not null %}
+		<ul>
+			<li><a href="{{ path('editEntite', { 'id': ent.id}) }}">{{ent.titre}}</a></li>
+		</ul>
+	{% else %}
+		<ul>
+			<li>Pas d'entité'</li>
+		</ul>
+    {% endif %}			
+{% endfor %}
+
+<h5><b>Créer une entité</b></h5>
+
+	<button class="btn btn-white-red return-button" type="button">
+		<a href="{{ path('newEntite') }}">Créer une entité</a>
+	</button>
+	
+	<br><br>
+	<a href="{{ path('app_accueil') }}">Retour</a>		
+
+{% endblock %}

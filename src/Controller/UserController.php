@@ -12,10 +12,14 @@ use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
+// Préfix url
+/**
+ * @Route("/users")
+ */
 class UserController extends AbstractController
 {
     /**
-     * @Route("users/new", methods={"GET","POST"}, name="newUser")
+     * @Route("/new", methods={"GET","POST"}, name="newUser")
      */
     public function new(Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
@@ -69,7 +73,7 @@ class UserController extends AbstractController
     }
 
     /**
-     * @Route("users/list", name="listUsers", methods={"GET","POST"})
+     * @Route("/list", name="listUsers", methods={"GET","POST"})
      */
     public function list(Request $httpRequest)
     {
@@ -86,7 +90,7 @@ class UserController extends AbstractController
     }    
 
     /**
-     * @Route("users/edit/{id}", requirements={"id"="\d+"}, methods={"GET","POST"}, name="editUsers")
+     * @Route("/edit/{id}", requirements={"id"="\d+"}, methods={"GET","POST"}, name="editUsers")
      */
     public function edit($id, Request $request, UserPasswordEncoderInterface $passwordEncoder)
     {
